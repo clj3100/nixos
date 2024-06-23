@@ -22,17 +22,6 @@
     loader = {
       systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
-      #grub = {
-      #  enable = true;
-	#zfsSupport = true;    
-	#efiSupport = true;
-	#efiInstallAsRemovable = true;
-	#enableCryptodisk = true;
-	#mirroredBoots = [
-	#  { devices = [ "nodev"]; path = "/boot";}
-	#];
-	#configurationLimit = 10;
-      #};
     };
     initrd = {
       systemd.enable = true;
@@ -95,18 +84,6 @@
     };
   };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
   environment.etc = {
     "libinput/local-overrides.quirks".text = ''
       [Keyboard]
@@ -124,7 +101,6 @@
     framework-tool
     powertop
     wluma
-    #kdePackages.kwallet-pam
     kwallet-pam
     linuxKernel.packages.linux_6_9.framework-laptop-kmod
     gnome.adwaita-icon-theme
@@ -177,9 +153,7 @@
   security.pam.services = {
     kde.fprintAuth = true;
     login.fprintAuth = true;
-    lightdm.kwallet.enable = true; 
     login.kwallet.enable = true;
-    #lightdm.kwallet.package = pkgs.kdePackages.kwallet-pam;
   };
 
   # Enable CUPS to print documents.
@@ -198,18 +172,10 @@
      pulse.enable = true;
    };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.trey = {
      isNormalUser = true;
      extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev" "tss"];
-  #   packages = with pkgs; [
-  #     firefox
-  #     tree
-  #     vim
-  #   ];
    };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
