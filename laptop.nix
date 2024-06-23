@@ -1,0 +1,233 @@
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+
+{ config, lib, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      ./framework16.nix
+      ./customization
+    ];
+
+  boot = {
+    supportedFilesystems = [ "zfs" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+    loader = {
+      systemd-boot.enable = lib.mkForce false;
+      efi.canTouchEfiVariables = true;
+      #grub = {
+      #  enable = true;
+	#zfsSupport = true;    
+	#efiSupport = true;
+	#efiInstallAsRemovable = true;
+	#enableCryptodisk = true;
+	#mirroredBoots = [
+	#  { devices = [ "nodev"]; path = "/boot";}
+	#];
+	#configurationLimit = 10;
+      #};
+    };
+    initrd = {
+      systemd.enable = true;
+      luks.devices = {
+        root = {
+          device = "/dev/disk/by-uuid/f4dea94c-906a-4b7a-b31e-a8ead03b6060";
+          preLVM = true;
+          allowDiscards = true;
+          bypassWorkqueues = true;
+        };
+      };
+    };
+    blacklistedKernelModules = [ "k10temp" ];
+    kernelModules = [ "acpi_call" "cros_ec" "cros_ec_lpcs" "zenpower" "tpm_crb" ];
+    kernelParams = [ "amd_pstate=active" "amdgpu.sg_display=0" ];
+    extraModulePackages = with config.boot.kernelPackages;
+      [
+        acpi_call
+        cpupower
+        framework-laptop-kmod
+        zenpower
+      ]
+      ++ [pkgs.cpupower-gui];
+  };
+
+  nixpkgs.config.allowBroken = true;
+  nixpkgs.config.allowUnfree = true;
+
+  nix = {
+    settings.allowed-users = [ "trey" ];
+
+    # Enabling auto optimize on rebuild https://nixos.wiki/wiki/Storage_optimization
+    settings.auto-optimise-store = true;
+
+    # Enabling weekly garbage collection https://nixos-and-flakes.thiscute.world/nixos-with-flakes/other-useful-tips#reducing-disk-usage
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 1w";
+    };
+  };
+
+  swapDevices = [{
+    device = "/dev/disk/by-uuid/3973b6f2-a1b3-49fa-b5c2-682cda4f172e";
+  }];
+
+  time.timeZone = "America/New_York";
+
+  networking = {
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
+    hostName = "nixos16"; 
+    hostId = "1e58b0bb";
+    firewall = {
+      allowedTCPPortRanges = [ 
+        { from = 1714; to = 1764; } # KDE Connect
+      ];  
+      allowedUDPPortRanges = [ 
+        { from = 1714; to = 1764; } # KDE Connect
+      ];  
+    };
+  };
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Select internationalisation properties.
+  # i18n.defaultLocale = "en_US.UTF-8";
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  #   useXkbConfig = true; # use xkb.options in tty.
+  # };
+
+  environment.etc = {
+    "libinput/local-overrides.quirks".text = ''
+      [Keyboard]
+      MatchUdevType=keyboard
+      MatchName=Framework Laptop 16 Keyboard Module - ANSI Keyboard
+      AttrKeyboardIntegration=internal
+    '';
+  };
+
+  environment.systemPackages = with pkgs; [
+    git
+    acpi
+    brightnessctl
+    cpupower-gui
+    framework-tool
+    powertop
+    wluma
+    #kdePackages.kwallet-pam
+    kwallet-pam
+    linuxKernel.packages.linux_6_9.framework-laptop-kmod
+    gnome.adwaita-icon-theme
+    iio-sensor-proxy
+    #tpm_crb
+  ];
+
+  security.protectKernelImage = false;
+  programs.dconf.enable = true;
+
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.type = "simple";
+  };
+ 
+  systemd.user.units.wluma.wantedBy = [ "default.target"];
+
+  services = {
+    xserver.enable = true;
+    desktopManager = {
+      plasma6.enable = true;
+    };
+    xserver.displayManager = {
+      lightdm.enable = true;
+      lightdm.greeters.pantheon.enable = true;
+    };
+
+    xserver.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+
+    power-profiles-daemon.enable = true;
+
+    fstrim.enable = true;
+
+    fprintd.enable = true;
+ 
+    upower = {
+      enable = true;
+      percentageLow = 20;
+      percentageCritical = 5;
+      percentageAction = 3;
+      criticalPowerAction = "PowerOff";
+    };
+    udev.packages = with pkgs; [
+      qmk-udev-rules
+    ];
+  };
+  
+  security.pam.services = {
+    kde.fprintAuth = true;
+    login.fprintAuth = true;
+    lightdm.kwallet.enable = true; 
+    login.kwallet.enable = true;
+    #lightdm.kwallet.package = pkgs.kdePackages.kwallet-pam;
+  };
+
+  # Enable CUPS to print documents.
+  # services.printing.enable = true;
+
+  # Enabling QMK option configuration
+  hardware.keyboard.qmk.enable = true;
+
+  # Enable sound.
+  hardware.pulseaudio.enable = false;
+  # OR
+   services.pipewire = {
+     enable = true;
+     alsa.enable = true;
+     alsa.support32Bit = true;
+     pulse.enable = true;
+   };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.libinput.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.trey = {
+     isNormalUser = true;
+     extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev"]; # Enable ‘sudo’ for the user.
+  #   packages = with pkgs; [
+  #     firefox
+  #     tree
+  #     vim
+  #   ];
+   };
+
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
+  # to actually do that.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "24.05"; # Did you read the comment?
+
+}
+
