@@ -46,7 +46,7 @@
       };
     };
     blacklistedKernelModules = [ "k10temp" ];
-    kernelModules = [ "acpi_call" "cros_ec" "cros_ec_lpcs" "zenpower" "tpm_crb" ];
+    kernelModules = [ "acpi_call" "cros_ec" "cros_ec_lpcs" "zenpower" "tpm_crb" "i2c_dev" ];
     kernelParams = [ "amd_pstate=active" "amdgpu.sg_display=0" ];
     extraModulePackages = with config.boot.kernelPackages;
       [
@@ -143,6 +143,8 @@
  
   systemd.user.units.wluma.wantedBy = [ "default.target"];
 
+  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+
   services = {
     xserver.enable = true;
     desktopManager = {
@@ -152,8 +154,6 @@
       lightdm.enable = true;
       lightdm.greeters.pantheon.enable = true;
     };
-
-    xserver.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
     power-profiles-daemon.enable = true;
 
