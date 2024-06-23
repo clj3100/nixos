@@ -4,6 +4,7 @@
   imports = [ 
     ./packages.nix
     ./common.nix
+    ./virtualization.nix
   ];
 
 }
