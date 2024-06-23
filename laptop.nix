@@ -129,7 +129,8 @@
     linuxKernel.packages.linux_6_9.framework-laptop-kmod
     gnome.adwaita-icon-theme
     iio-sensor-proxy
-    #tpm_crb
+    tpm2-tss
+    ddcutil
   ];
 
   security.protectKernelImage = false;
