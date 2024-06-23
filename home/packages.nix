@@ -87,6 +87,7 @@
     dnsutils
     nmap
     ipcalc
+    tpm2-tools
   ];
 
 }
