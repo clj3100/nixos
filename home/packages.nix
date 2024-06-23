@@ -88,6 +88,7 @@
     nmap
     ipcalc
     tpm2-tools
+    tpm2-pkcs11
   ];
 
 }
