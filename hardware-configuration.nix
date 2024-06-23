@@ -33,6 +33,11 @@
       fsType = "zfs";
     };
 
+  fileSystems."/vms" =
+    { device = "rpool/vms";
+      fsType = "zfs";
+    };
+
   fileSystems."/steamlibrary" =
     { device = "rpool/steamlibrary";
       fsType = "zfs";
