@@ -204,7 +204,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.trey = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev"]; # Enable ‘sudo’ for the user.
+     extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev" "tss"];
   #   packages = with pkgs; [
   #     firefox
   #     tree
