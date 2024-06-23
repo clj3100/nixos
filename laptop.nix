@@ -150,6 +150,8 @@
     ];
   };
   
+  security.pam.sshAgentAuth.enable = true;
+
   security.pam.services = {
     kde.fprintAuth = true;
     login.fprintAuth = true;

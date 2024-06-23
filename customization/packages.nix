@@ -7,6 +7,8 @@ programs.steam = {
   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
 };
 
+programs.ssh.startAgent = true;
+
 security = {
   tpm2 = {
     enable = true;
