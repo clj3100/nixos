@@ -45,6 +45,7 @@
         zenpower
       ]
       ++ [pkgs.cpupower-gui];
+     zfs.forceImportRoot = false;
   };
 
   nixpkgs.config.allowBroken = true;
