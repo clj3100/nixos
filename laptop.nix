@@ -132,6 +132,11 @@
       lightdm.greeters.pantheon.enable = true;
     };
 
+    zfs.autoScrub = {
+      enable = true;
+      interval = "*-*-1,15 02:30";
+    };
+
     power-profiles-daemon.enable = true;
 
     fstrim.enable = true;
@@ -176,10 +181,15 @@
    };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.trey = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev" "tss"];
-   };
+  users.users = {
+    trey = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev" "tss"];
+    };
+    backupuser = {
+      isSystemUser = true;
+    };
+  };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
