@@ -17,4 +17,6 @@ security = {
   };  
 };
 
+services.hardware.openrgb.enable = true;
+
 }

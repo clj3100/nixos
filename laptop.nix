@@ -108,6 +108,7 @@
     iio-sensor-proxy
     tpm2-tss
     ddcutil
+    openrgb-with-all-plugins
   ];
 
   security.protectKernelImage = false;
