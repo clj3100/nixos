@@ -156,7 +156,7 @@
       qmk-udev-rules
       wluma
     ];
-    udev.extraRules = builtins.readFile ./rules.d/50-framework-inputmodule.rules
+    udev.extraRules = builtins.readFile ./rules.d/50-framework-inputmodule.rules;
   };
   
   security.pam.sshAgentAuth.enable = true;
