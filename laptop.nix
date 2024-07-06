@@ -105,7 +105,7 @@
     wluma
     kwallet-pam
     linuxKernel.packages.linux_6_9.framework-laptop-kmod
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
     iio-sensor-proxy
     tpm2-tss
     ddcutil
