@@ -35,7 +35,7 @@
       };
     };
     blacklistedKernelModules = [ "k10temp" ];
-    kernelModules = [ "acpi_call" "cros_ec" "cros_ec_lpcs" "zenpower" "tpm_crb" "i2c_dev" ];
+    kernelModules = [ "acpi_call" "cros_ec" "cros_ec_lpcs" "zenpower" "tpm_crb" "i2c-dev" ];
     kernelParams = [ "amd_pstate=active" "amdgpu.sg_display=0" ];
     extraModulePackages = with config.boot.kernelPackages;
       [
@@ -170,6 +170,8 @@
 
   # Enabling QMK option configuration
   hardware.keyboard.qmk.enable = true;
+
+  hardware.i2c.enable = true;
 
   # Enable sound.
   hardware.pulseaudio.enable = false;
