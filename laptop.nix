@@ -156,9 +156,7 @@
       qmk-udev-rules
       wluma
     ];
-    udev.extraRules = ''
-      SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0012", MODE="0666"
-    '';
+    udev.extraRules = builtins.readFile ./rules.d/50-framework-inputmodule.rules
   };
   
   security.pam.sshAgentAuth.enable = true;
