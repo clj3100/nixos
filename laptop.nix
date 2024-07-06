@@ -96,6 +96,7 @@
 
   environment.systemPackages = with pkgs; [
     git
+    zfs
     acpi
     brightnessctl
     cpupower-gui
@@ -155,6 +156,9 @@
       qmk-udev-rules
       wluma
     ];
+    udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0012", MODE="0666"
+    '';
   };
   
   security.pam.sshAgentAuth.enable = true;
