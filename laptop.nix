@@ -192,6 +192,8 @@
     backupuser = {
       isSystemUser = true;
       group = "backupuser";
+      createHome = true;
+      home = "/var/lib/syncoid";
     };
   };
 
