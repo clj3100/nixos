@@ -1,14 +1,12 @@
 { pkgs, ... }:{
-  systemd.services = {
-    syncoid-nas = {
-      description = "Syncoid backup to home TrueNAS";
-      after = [ "sanoid.service" ];
-      wantedBy = [ "sanoid.service" ];
-      serviceConfig = {
-        ExecStart = "${pkgs.sanoid}/bin/syncoid --no-privilege-elevation --no-sync-snap --sshkey /var/lib/syncoid/backup rpool/home n16backup@192.168.1.8:First/Backup/nixos16";
-        User = "backupuser";
+  services.syncoid = {
+      enable = true;
+      #user = "backupuser";
+      commonArgs = ["--no-sync-snap" "--no-privilege-elevation"];
+      sshKey = "/var/lib/syncoid/backup";
+      commands."truenas" = {
+        source = "rpool/home";
+        target = "n16backup@192.168.1.8:First/Backup/nixos16/home";
       };
-      path = [ pkgs.openssh pkgs.sanoid pkgs.zfs ];
-    };
   };
 }
