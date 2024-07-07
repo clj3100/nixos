@@ -35,7 +35,7 @@
       };
     };
     blacklistedKernelModules = [ "k10temp" ];
-    kernelModules = [ "acpi_call" "cros_ec" "cros_ec_lpcs" "zenpower" "tpm_crb" "i2c-dev" ];
+    kernelModules = [ "acpi_call" "cros_ec" "cros_ec_lpcs" "zenpower" "tpm_crb" "i2c-dev" "i2c-piix4" ];
     kernelParams = [ "amd_pstate=active" "amdgpu.sg_display=0" ];
     extraModulePackages = with config.boot.kernelPackages;
       [
