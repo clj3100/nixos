@@ -110,6 +110,7 @@
     tpm2-tss
     ddcutil
     openrgb-with-all-plugins
+    i2c-tools
   ];
 
   security.protectKernelImage = false;
