@@ -109,7 +109,6 @@
     iio-sensor-proxy
     tpm2-tss
     ddcutil
-    openrgb-with-all-plugins
     i2c-tools
   ];
 

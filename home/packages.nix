@@ -91,6 +91,7 @@
     tpm2-pkcs11
     ksshaskpass
     findex
+    openrgb-with-all-plugins
   ];
 
 }
