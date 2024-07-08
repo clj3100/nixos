@@ -155,6 +155,7 @@
     udev.packages = with pkgs; [
       qmk-udev-rules
       wluma
+      openrgb
     ];
     udev.extraRules = builtins.readFile ./rules.d/50-framework-inputmodule.rules;
   };
