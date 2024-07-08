@@ -92,6 +92,7 @@
     ksshaskpass
     findex
     openrgb-with-all-plugins
+    cheese
   ];
 
 }
