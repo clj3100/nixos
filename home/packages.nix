@@ -47,7 +47,6 @@
     killall                           # to kill our little friends
     lazygit
     lshw
-    magic-wormhole                    # magic file transfer
     nitch                             # systhem fetch util
     nix-prefetch-github
     pciutils
