@@ -35,6 +35,12 @@
           nixpkgs.overlays = [
             (final: prev: {
               master = pkgs-master;
+              openrgb = prev.openrgb.overrideAttrs (_: { src = final.fetchFromGitLab {
+                owner = "CalcProgrammer1";
+                repo = "OpenRGB";
+                rev = "e2a0032657bc5743ca064271fcc3c26a81a8decb";
+                hash = "sha256-H5wxVTJgHiJzOSTWrenLYn4iNLIX5wl+kUgyAkPDyBs=";
+              };});
             })
           ];
           }
