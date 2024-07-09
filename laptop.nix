@@ -139,6 +139,8 @@
       interval = "*-*-1,15 02:30";
     };
 
+    tailscale.enable = true;
+    
     power-profiles-daemon.enable = true;
 
     fstrim.enable = true;

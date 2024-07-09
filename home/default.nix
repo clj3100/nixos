@@ -1,9 +1,9 @@
 { inputs, config, pkgs, ... }:
 
 {
-
   imports = [
     ./packages.nix
+    ./services.nix
   ]; 
 
   home.username = "trey";
