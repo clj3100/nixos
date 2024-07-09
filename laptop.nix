@@ -157,9 +157,9 @@
     udev.packages = with pkgs; [
       qmk-udev-rules
       wluma
-      openrgb
+      #openrgb
     ];
-    udev.extraRules = builtins.readFile ./rules.d/50-framework-inputmodule.rules;
+    udev.extraRules = builtins.readFile ./rules.d/60-openrgb.rules;
   };
   
   security.pam.sshAgentAuth.enable = true;
