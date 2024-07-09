@@ -9,8 +9,12 @@ systemd.user.services = {
     Service = {
       Type = "simple";
       Restart = "always";
-      RestartSec = 5;
-      ExecStart = "${pkgs.openrgb}/bin/openrgb --server --server-port 6742";
+      RestartSec = "5";
+      ExecStart = "${pkgs.appimage-run}/bin/appimage-run /home/trey/Documents/OpenRGB-x86_64.AppImage --startminimized";
+    };
+
+    Install = {
+      WantedBy = ["default.target"];
     };
   };
 };
