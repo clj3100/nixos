@@ -159,7 +159,7 @@
       wluma
       #openrgb
     ];
-    udev.extraRules = builtins.readFile ./rules.d/60-openrgb.rules;
+    #udev.extraRules = builtins.readFile ./rules.d/60-openrgb.rules;
   };
   
   security.pam.sshAgentAuth.enable = true;

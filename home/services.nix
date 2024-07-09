@@ -10,7 +10,7 @@ systemd.user.services = {
       Type = "simple";
       Restart = "always";
       RestartSec = "5";
-      ExecStart = "${pkgs.appimage-run}/bin/appimage-run /home/trey/Documents/OpenRGB-x86_64.AppImage --startminimized";
+      ExecStart = "${pkgs.openrgb}/bin/openrgb --startminimized";
     };
 
     Install = {
