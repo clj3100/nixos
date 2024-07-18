@@ -89,10 +89,10 @@
     tpm2-tools
     tpm2-pkcs11
     ksshaskpass
-    findex
     openrgb		# removing openrgb version 0.9 since running appimage of experimental
     cheese
     appimage-run
+    spectacle
   ];
 
 }
