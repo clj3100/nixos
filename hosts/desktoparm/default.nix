@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../customization
+      ../../customization
     ];
 
   boot = {
@@ -26,7 +26,7 @@
       systemd.enable = true;
       luks.devices = {
         root = {
-          device = "/dev/disk/by-uuid/f4dea94c-906a-4b7a-b31e-a8ead03b6060";
+          device = "/dev/disk/by-uuid/441ed4f3-6c00-4ba0-aaae-2336300d5b80";
           preLVM = true;
           allowDiscards = true;
           bypassWorkqueues = true;
@@ -64,7 +64,7 @@
   };
 
   swapDevices = [{
-    device = "/dev/disk/by-uuid/3973b6f2-a1b3-49fa-b5c2-682cda4f172e";
+    device = "/dev/disk/by-uuid/5a1d6eb2-34be-4e4a-bd8b-2375f82e5325";
   }];
 
   time.timeZone = "America/New_York";
