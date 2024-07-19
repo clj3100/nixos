@@ -102,9 +102,11 @@
     cpupower-gui
     framework-tool
     powertop
+    fw-ectool
+    kdePackages.frameworkintegration
     wluma
     kwallet-pam
-    linuxKernel.packages.linux_6_9.framework-laptop-kmod
+    linuxKernel.packages.linux_5_9.framework-laptop-kmod
     adwaita-icon-theme
     iio-sensor-proxy
     tpm2-tss
