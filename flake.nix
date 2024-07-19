@@ -56,7 +56,7 @@
 
           }
           lanzaboote.nixosModules.lanzaboote
-          (import ./hosts/laptop.nix )
+          (import ./hosts/nixos16 )
         ];
         specialArgs = { inherit inputs ;};
       };
@@ -75,7 +75,7 @@
 
             }
             lanzaboote.nixosModules.lanzaboote
-            (import ./hosts/desktoparm.nix)
+            (import ./hosts/desktoparm)
           ];
       };
     };
