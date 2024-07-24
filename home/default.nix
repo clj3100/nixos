@@ -33,7 +33,7 @@
     settings = {
       add_newline = true;
       gcloud.disabled = true;
-      line_break.disabled = true;
+      line_break.disabled = false;
     };
   };
 
