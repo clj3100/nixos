@@ -14,7 +14,7 @@
 
   boot = {
     supportedFilesystems = [ "zfs" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
