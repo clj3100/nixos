@@ -56,9 +56,27 @@
 
           }
           lanzaboote.nixosModules.lanzaboote
-          (import ./laptop.nix )
+          (import ./hosts/nixos16 )
         ];
         specialArgs = { inherit inputs ;};
+      };
+      desktoparm = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            {
+            users.users.trey.home = "/home/trey";
+            }
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.trey = import ./home;
+              home-manager.extraSpecialArgs = { inherit inputs ;};
+
+            }
+            lanzaboote.nixosModules.lanzaboote
+            (import ./hosts/desktoparm)
+          ];
       };
     };
   };

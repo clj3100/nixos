@@ -33,7 +33,7 @@
     settings = {
       add_newline = true;
       gcloud.disabled = true;
-      line_break.disabled = true;
+      line_break.disabled = false;
     };
   };
 
@@ -56,7 +56,7 @@
   nixedit = "vi /home/trey/nixos-config";
   homedit = "vi /home/trey/nixos-config/home";
   g = "git";
-  nixrebuild = "sudo nixos-rebuild";
+  nixrebuild = "sudo nixos-rebuild --flake /home/trey/nixos-config";
   nixupdate = "nix flake update /home/trey/nixos-config";
   };
 

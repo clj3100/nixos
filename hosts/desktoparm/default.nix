@@ -8,13 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./framework16.nix
-      ./customization
+      ../../customization
     ];
 
   boot = {
     supportedFilesystems = [ "zfs" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
@@ -27,7 +26,7 @@
       systemd.enable = true;
       luks.devices = {
         root = {
-          device = "/dev/disk/by-uuid/f4dea94c-906a-4b7a-b31e-a8ead03b6060";
+          device = "/dev/disk/by-uuid/441ed4f3-6c00-4ba0-aaae-2336300d5b80";
           preLVM = true;
           allowDiscards = true;
           bypassWorkqueues = true;
@@ -35,13 +34,12 @@
       };
     };
     blacklistedKernelModules = [ "k10temp" ];
-    kernelModules = [ "acpi_call" "cros_ec" "cros_ec_lpcs" "zenpower" "tpm_crb" "i2c-dev" "i2c-piix4" ];
+    kernelModules = [ "acpi_call" "zenpower" "tpm_crb" ];
     kernelParams = [ "amd_pstate=active" "amdgpu.sg_display=0" ];
     extraModulePackages = with config.boot.kernelPackages;
       [
         acpi_call
         cpupower
-        framework-laptop-kmod
         zenpower
       ]
       ++ [pkgs.cpupower-gui];
@@ -66,15 +64,15 @@
   };
 
   swapDevices = [{
-    device = "/dev/disk/by-uuid/3973b6f2-a1b3-49fa-b5c2-682cda4f172e";
+    device = "/dev/disk/by-uuid/5a1d6eb2-34be-4e4a-bd8b-2375f82e5325";
   }];
 
   time.timeZone = "America/New_York";
 
   networking = {
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
-    hostName = "nixos16"; 
-    hostId = "1e58b0bb";
+    hostName = "desktoparm"; 
+    hostId = "1e58b0bc";
     firewall = {
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
@@ -85,42 +83,18 @@
     };
   };
 
-  environment.etc = {
-    "libinput/local-overrides.quirks".text = ''
-      [Keyboard]
-      MatchUdevType=keyboard
-      MatchName=Framework Laptop 16 Keyboard Module - ANSI Keyboard
-      AttrKeyboardIntegration=internal
-    '';
-  };
-
   environment.systemPackages = with pkgs; [
     git
     zfs
     acpi
-    brightnessctl
     cpupower-gui
-    framework-tool
-    powertop
-    wluma
     kwallet-pam
-    linuxKernel.packages.linux_6_9.framework-laptop-kmod
     adwaita-icon-theme
-    iio-sensor-proxy
     tpm2-tss
-    ddcutil
-    i2c-tools
   ];
 
   security.protectKernelImage = false;
   programs.dconf.enable = true;
-
-  systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.type = "simple";
-  };
- 
-  systemd.user.units.wluma.wantedBy = [ "default.target"];
 
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
@@ -133,40 +107,24 @@
       lightdm.enable = true;
       lightdm.greeters.pantheon.enable = true;
     };
-
     zfs.autoScrub = {
       enable = true;
       interval = "*-*-1,15 02:30";
     };
 
     tailscale.enable = true;
-    
-    power-profiles-daemon.enable = true;
 
     fstrim.enable = true;
-
-    fprintd.enable = true;
- 
-    upower = {
-      enable = true;
-      percentageLow = 20;
-      percentageCritical = 5;
-      percentageAction = 3;
-      criticalPowerAction = "PowerOff";
-    };
+    
     udev.packages = with pkgs; [
       qmk-udev-rules
-      wluma
-      #openrgb
+      openrgb
     ];
-    #udev.extraRules = builtins.readFile ./rules.d/60-openrgb.rules;
   };
   
   security.pam.sshAgentAuth.enable = true;
 
   security.pam.services = {
-    kde.fprintAuth = true;
-    login.fprintAuth = true;
     login.kwallet.enable = true;
   };
 
@@ -175,8 +133,6 @@
 
   # Enabling QMK option configuration
   hardware.keyboard.qmk.enable = true;
-
-  hardware.i2c.enable = true;
 
   # Enable sound.
   hardware.pulseaudio.enable = false;

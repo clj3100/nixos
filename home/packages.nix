@@ -73,12 +73,10 @@
     krunner-ssh
     krunner-symbols
     discord
-    kdePackages.frameworkintegration
     via
     qmk
     qmk_hid
     qmk-udev-rules
-    fw-ectool
     vlc
     floorp
     prusa-slicer
