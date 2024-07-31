@@ -9,12 +9,12 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./framework16.nix
-      ../customization
+      ../../customization
     ];
 
   boot = {
     supportedFilesystems = [ "zfs" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
@@ -106,7 +106,6 @@
     kdePackages.frameworkintegration
     wluma
     kwallet-pam
-    linuxKernel.packages.linux_5_9.framework-laptop-kmod
     adwaita-icon-theme
     iio-sensor-proxy
     tpm2-tss
