@@ -116,6 +116,11 @@
 
     fstrim.enable = true;
     
+    openssh = {
+      enable = true;
+      settings.AllowUsers = [ "trey" ];
+    };
+
     udev.packages = with pkgs; [
       qmk-udev-rules
       openrgb

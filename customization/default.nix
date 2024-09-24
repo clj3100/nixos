@@ -6,7 +6,7 @@
     ./common.nix
     ./virtualization.nix
     ./sanoid.nix
-    ./syncoid.nix
+#    ./syncoid.nix
   ];
 
 }
