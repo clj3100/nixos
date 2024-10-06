@@ -92,6 +92,7 @@
     appimage-run
     spectacle
     wlx-overlay-s
+    vscode
   ];
 
 }
