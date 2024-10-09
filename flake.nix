@@ -72,7 +72,6 @@
               home-manager.useUserPackages = true;
               home-manager.users.trey = import ./home;
               home-manager.extraSpecialArgs = { inherit inputs ;};
-
             }
             lanzaboote.nixosModules.lanzaboote
             (import ./hosts/desktoparm)
