@@ -91,6 +91,7 @@
     kwallet-pam
     adwaita-icon-theme
     tpm2-tss
+    barrier
   ];
 
   security.protectKernelImage = false;
