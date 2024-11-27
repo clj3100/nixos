@@ -74,6 +74,7 @@
     hostName = "desktoparm"; 
     hostId = "1e58b0bc";
     firewall = {
+      allowedTCPPorts = [ 24800 ];
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
       ];  
