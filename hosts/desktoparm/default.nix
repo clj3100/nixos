@@ -74,7 +74,7 @@
     hostName = "desktoparm"; 
     hostId = "1e58b0bc";
     firewall = {
-      allowedTCPPorts = [ 24800 ];
+      allowedTCPPorts = [ 24800 ]; # Input-Leap
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
       ];  
@@ -92,7 +92,7 @@
     kwallet-pam
     adwaita-icon-theme
     tpm2-tss
-    barrier
+    input-leap
   ];
 
   security.protectKernelImage = false;
