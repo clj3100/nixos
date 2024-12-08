@@ -1,39 +1,39 @@
 {inputs, pkgs, ... }:
 {
 
-  home.packages = with pkgs; [
-  firefox-wayland
-  vim
-  zip
+    home.packages = with pkgs; [
+    firefox-wayland
+    vim
+    zip
 
-  jq
-  mtr
-  iperf3  
+    jq
+    mtr
+    iperf3  
 
-  file
-  which
-  tree
-  btop
-  iotop
-  iftop
-  strace
-  lsof
+    file
+    which
+    tree
+    btop
+    iotop
+    iftop
+    strace
+    lsof
 
-  sysstat
-  lm_sensors
-  ethtool
-  pciutils
-  usbutils
+    sysstat
+    lm_sensors
+    ethtool
+    pciutils
+    usbutils
 
-  protonmail-desktop
-  protonvpn-cli
-  protonvpn-gui
-  
-  tailscale
-  trayscale
+    protonmail-desktop
+    protonvpn-cli
+    protonvpn-gui
+    
+    tailscale
+    trayscale
 
-  age                               # for my secrets
-  awscli2
+    age                               # for my secrets
+    awscli2
     dmidecode
     entr                              # perform action when file change
     fd                                # find replacement
@@ -93,6 +93,7 @@
     spectacle
     wlx-overlay-s
     vscode
+    f3
   ];
 
 }
