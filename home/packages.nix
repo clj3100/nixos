@@ -94,6 +94,7 @@
     wlx-overlay-s
     vscode
     f3
+    goverlay
   ];
 
 }

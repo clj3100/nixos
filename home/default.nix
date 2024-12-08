@@ -22,7 +22,7 @@
 
   programs.mangohud = {
     enable = true;
-    enableSessionWide = true;
+#    enableSessionWide = true;
   };
 
   services.kdeconnect = {
