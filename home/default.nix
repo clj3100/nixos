@@ -20,6 +20,11 @@
     enableCompletion = true;
   };
 
+  programs.mangohud = {
+    enable = true;
+    enableSessionWide = true;
+  };
+
   services.kdeconnect = {
    enable = true;
    package = pkgs.kdePackages.kdeconnect-kde;
