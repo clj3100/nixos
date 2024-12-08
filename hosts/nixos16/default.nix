@@ -111,6 +111,7 @@
     tpm2-tss
     ddcutil
     i2c-tools
+    gamemode
   ];
 
   security.protectKernelImage = false;
@@ -124,6 +125,20 @@
   systemd.user.units.wluma.wantedBy = [ "default.target"];
 
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      general = {
+        softrealtime = "auto";
+        renice = 10;
+      };
+      custom = {
+        start = "notify-send -a 'Gamemode' 'Optimizations activated'";
+        end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+      };
+    };
+  };
 
   services = {
     xserver.enable = true;
@@ -193,7 +208,7 @@
   users.users = {
     trey = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev" "tss"];
+      extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev" "tss" "gamemode"];
     };
     backupuser = {
       isSystemUser = true;
