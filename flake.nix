@@ -77,6 +77,23 @@
             (import ./hosts/desktoparm)
           ];
       };
+      gaming-desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            {
+            users.users.trey.home = "/home/trey";
+            }
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.trey = import ./home;
+              home-manager.extraSpecialArgs = { inherit inputs ;};
+            }
+            lanzaboote.nixosModules.lanzaboote
+            (import ./hosts/gaming-desktop)
+          ];
+      };
     };
   };
 }
