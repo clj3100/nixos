@@ -2,6 +2,6 @@
  {
     imports = [
         ./pstate.nix
-        ./zenpower.nix
+        #./zenpower.nix
     ];
  }
