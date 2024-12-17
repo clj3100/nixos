@@ -138,7 +138,9 @@
     };
     xserver.displayManager = {
       lightdm.enable = true;
-      lightdm.greeters.pantheon.enable = true;
+      # lightdm.greeters.pantheon.enable = true;
+      lightdm.greeters.slick.enable = true;
+      lightdm.greeters.slick.extraConfig = "only-on-monitor=1";
     };
 
     btrfs.autoScrub = {
