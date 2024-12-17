@@ -86,6 +86,7 @@
     solaar
     logiops
     streamcontroller
+    nvtop
   ];
 
   programs = {
@@ -121,7 +122,10 @@
   time.timeZone = "America/New_York";
 
    services = {
-    xserver.enable = true;
+    xserver = {
+      enable = true;
+      videoDrivers = lib.mkDefault [ "nvidia" ];
+    };
     desktopManager = {
       plasma6.enable = true;
     };
