@@ -95,7 +95,8 @@
     vscode
     f3
     goverlay
-    brave
+    easyeffects
+    remmina
   ];
 
 }

@@ -116,6 +116,13 @@
     };
     logitech.wireless.enable = true;
     logitech.wireless.enableGraphical = true;
+    
+    # Enabling QMK option configuration
+    keyboard.qmk.enable = true;
+
+    i2c.enable = true;
+
+    pulseaudio.enable = false;
   };
 
   # Set your time zone.
@@ -146,6 +153,17 @@
 
     fstrim.enable = true;
 
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      jack.enable = true;
+    };
+
     udev.packages = with pkgs; [
       qmk-udev-rules
       logitech-udev-rules
@@ -154,22 +172,6 @@
   };  
 
   security.pam.sshAgentAuth.enable = true;
-
-  # Enabling QMK option configuration
-  hardware.keyboard.qmk.enable = true;
-
-  hardware.i2c.enable = true;
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable sound.
-  hardware.pulseaudio.enable = false;
-  # OR
-   services.pipewire = {
-     enable = true;
-     pulse.enable = true;
-   };
 
   users.users = {
     trey = {
