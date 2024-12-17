@@ -54,6 +54,23 @@
     hostName = "gaming-desktop";
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     hostId = "1e58b0bc";
+    firewall = {
+      allowedTCPPortRanges = [ 
+        { from = 1714; to = 1764; } # KDE Connect
+      ];  
+      allowedUDPPortRanges = [ 
+        { from = 1714; to = 1764; } # KDE Connect
+      ];  
+    };
+    interfaces.enp8s0 = {
+      ipv4.addresses = [{
+        address = "192.168.1.25";
+        prefixLength = 24;
+      }];
+      wakeOnLan.enable = true;
+    };
+    defaultGateway = "192.168.1.1";
+    nameservers = ["192.168.1.3"];
   };
 
   environment.systemPackages = with pkgs; [
@@ -68,13 +85,10 @@
     gamemode
     solaar
     logiops
+    streamcontroller
   ];
 
   programs = {
-    streamdeck-ui = {
-      enable = true;
-      autoStart = true; # optional
-    };
     gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
     gamemode = {
       enable = true;
@@ -114,6 +128,12 @@
     xserver.displayManager = {
       lightdm.enable = true;
       lightdm.greeters.pantheon.enable = true;
+    };
+
+    btrfs.autoScrub = {
+      enable = true;
+      interval = "monthly";
+      fileSystems = [ "/" ];
     };
 
     tailscale.enable = true;
