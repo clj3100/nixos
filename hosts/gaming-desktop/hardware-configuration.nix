@@ -36,6 +36,12 @@
       fsType = "btrfs";
       options = [ "subvol=etc" "compress=zstd:1" "noatime" ];
     };
+  
+  fileSystems."/home/trey/games" =
+    { device = "/dev/disk/by-uuid/a4dadf8f-c9f7-4039-95fc-4d9ae0ac25e8";
+      fsType = "btrfs";
+      options = [ "subvol=games" "compress=zstd:1" "noatime" ];
+    };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/D630-08C1";

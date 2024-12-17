@@ -14,9 +14,13 @@
   boot = {
     supportedFilesystems = [ "btrfs" ];
     loader = {
-      systemd-boot.enable = true; 
+      systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
-    }
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
     initrd = {
       systemd.enable = true;
       luks.devices = {
@@ -24,6 +28,7 @@
           device = "/dev/disk/by-uuid/c97dc33c-f36f-49a9-ace0-e7813f8222ce";
           preLVM = true;
           allowDiscards = true;
+          bypassWorkqueues = true;
         };
       };
     };
@@ -48,18 +53,21 @@
   networking = {
     hostName = "gaming-desktop";
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-    hostId = "1e58b0bc"
+    hostId = "1e58b0bc";
   };
 
   environment.systemPackages = with pkgs; [
     git
     acpi
+    sbctl
     kwallet-pam
     adwaita-icon-theme
     tpm2-tss
     ddcutil
     i2c-tools
     gamemode
+    solaar
+    logiops
   ];
 
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
@@ -86,6 +94,8 @@
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
+    logitech.wireless.enable = true;
+    logitech.wireless.enableGraphical = true;
   };
 
   # Set your time zone.
@@ -103,11 +113,14 @@
 
     tailscale.enable = true;
 
+    ratbagd.enable = true;
+
     fstrim.enable = true;
 
     udev.packages = with pkgs; [
       qmk-udev-rules
-      openrgb
+      logitech-udev-rules
+      #openrgb
     ];
   };  
 
@@ -131,6 +144,7 @@
 
   users.users = {
     trey = {
+      createHome = true;
       isNormalUser = true;
       extraGroups = [ "wheel" "input" "video" "networkmanager" "dialout" "plugdev" "tss" "gamemode"];
     };
