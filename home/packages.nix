@@ -97,6 +97,7 @@
     goverlay
     easyeffects
     remmina
+    protonup-qt
   ];
 
 }

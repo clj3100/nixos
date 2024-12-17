@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../customization
+      ./nixos-hardware
     ];
 
   boot = {
@@ -106,17 +107,19 @@
     };
   };
 
-  hardware = {
-    opengl = {
+  hardware = {  
+    graphics ={ 
+      enable = true;
       extraPackages = with pkgs; [mangohud];
       extraPackages32 = with pkgs; [mangohud];
-    };  
-    graphics.enable = true;
+    };
     nvidia = {
       modesetting.enable = true;
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
     };
     logitech.wireless.enable = true;
     logitech.wireless.enableGraphical = true;
@@ -144,7 +147,7 @@
       lightdm.enable = true;
       # lightdm.greeters.pantheon.enable = true;
       lightdm.greeters.slick.enable = true;
-      lightdm.greeters.slick.extraConfig = "only-on-monitor=1";
+      # lightdm.greeters.slick.extraConfig = "only-on-monitor=1";
     };
 
     btrfs.autoScrub = {
