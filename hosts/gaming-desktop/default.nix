@@ -86,7 +86,7 @@
     solaar
     logiops
     streamcontroller
-    nvtop
+    nvtopPackages.full
   ];
 
   programs = {
@@ -107,6 +107,10 @@
   };
 
   hardware = {
+    opengl = {
+      extraPackages = with pkgs; [mangohud];
+      extraPackages32 = with pkgs; [mangohud];
+    };  
     graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
