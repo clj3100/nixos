@@ -70,18 +70,23 @@
     logiops
   ];
 
-  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
-
-  programs.gamemode = {
-    enable = true;
-    settings = {
-      general = {
-        softrealtime = "auto";
-        renice = 10;
-      };
-      custom = {
-        start = "notify-send -a 'Gamemode' 'Optimizations activated'";
-        end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+  programs = {
+    streamdeck-ui = {
+      enable = true;
+      autoStart = true; # optional
+    };
+    gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          softrealtime = "auto";
+          renice = 10;
+        };
+        custom = {
+          start = "notify-send -a 'Gamemode' 'Optimizations activated'";
+          end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+        };
       };
     };
   };
