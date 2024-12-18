@@ -64,14 +64,14 @@
       ];  
     };
     interfaces.enp8s0 = {
-      ipv4.addresses = [{
-        address = "192.168.1.25";
-        prefixLength = 24;
-      }];
+      # ipv4.addresses = [{
+      #   address = "192.168.1.25";
+      #   prefixLength = 24;
+      # }];
       wakeOnLan.enable = true;
     };
-    defaultGateway = "192.168.1.1";
-    nameservers = ["192.168.1.3"];
+    # defaultGateway = "192.168.1.1";
+    # nameservers = ["192.168.1.3"];
   };
 
   environment.systemPackages = with pkgs; [
@@ -105,8 +105,8 @@
           renice = 10;
         };
         custom = {
-          start = "notify-send -a 'Gamemode' 'Optimizations activated'";
-          end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
         };
       };
     };
@@ -178,6 +178,7 @@
       };
       pulse.enable = true;
       jack.enable = true;
+      wireplumber.enable = true;
     };
 
     udev.packages = with pkgs; [

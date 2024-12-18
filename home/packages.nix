@@ -98,6 +98,7 @@
     easyeffects
     remmina
     protonup-qt
+    ungoogled-chromium
   ];
 
 }
