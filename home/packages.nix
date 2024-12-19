@@ -99,6 +99,7 @@
     remmina
     protonup-qt
     ungoogled-chromium
+    qpwgraph
   ];
 
 }
