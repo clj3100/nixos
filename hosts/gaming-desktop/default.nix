@@ -211,8 +211,18 @@
             factory = "adapter";
             args = {
               "factory.name"     = "support.null-audio-sink";
-              "node.name"        = "Main-Output-Proxy";
-              "node.description" = "Main Output";
+              "node.name"        = "Desktop-Output-Proxy";
+              "node.description" = "Desktop Output";
+              "media.class"      = "Audio/Sink";
+              "audio.position"   = "FL,FR";
+            };
+          }
+          {
+            factory = "adapter";
+            args = {
+              "factory.name"     = "support.null-audio-sink";
+              "node.name"        = "Music-Output-Proxy";
+              "node.description" = "Music Output";
               "media.class"      = "Audio/Sink";
               "audio.position"   = "FL,FR";
             };
