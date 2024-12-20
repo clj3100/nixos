@@ -100,6 +100,7 @@
     protonup-qt
     ungoogled-chromium
     qpwgraph
+    tio # Serial io device tool
   ];
 
 }
