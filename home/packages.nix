@@ -79,7 +79,7 @@
     qmk-udev-rules
     vlc
     floorp
-    prusa-slicer
+    # prusa-slicer
     bottles
     dnsutils
     nmap

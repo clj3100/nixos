@@ -143,6 +143,7 @@
   time.timeZone = "America/New_York";
 
    services = {
+    flatpak.enable = true;
     sunshine = {
       enable = true;
       autoStart = true;
