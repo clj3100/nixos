@@ -112,7 +112,7 @@
   };
 
   hardware = {
-    opengl.enable = true;
+    bluetooth.enable = true;
     graphics ={ 
       enable = true;
       extraPackages = with pkgs; [mangohud];
@@ -184,7 +184,6 @@
         support32Bit = true;
       };
       pulse.enable = true;
-      jack.enable = true;
       wireplumber.enable = true;
       extraConfig.pipewire."91-null-sinks" = {
         "context.objects" = [
