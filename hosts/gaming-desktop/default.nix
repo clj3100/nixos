@@ -84,17 +84,14 @@
     ddcutil
     i2c-tools
     gamemode
-    solaar
+    libratbag
+    piper
     logiops
     streamcontroller
     nvtopPackages.full
-    liquidctl
   ];
 
   programs = {
-    # coolercontrol = {
-    #   enable = true;
-    # };
     gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
     gamemode = {
       enable = true;
@@ -128,8 +125,6 @@
     };
     logitech.wireless.enable = true;
     logitech.wireless.enableGraphical = true;
-    
-    ckb-next.enable = true;
 
     # Enabling QMK option configuration
     keyboard.qmk.enable = true;
@@ -143,6 +138,7 @@
   time.timeZone = "America/New_York";
 
    services = {
+    fwupd.enable = true;
     flatpak.enable = true;
     sunshine = {
       enable = true;
@@ -159,9 +155,7 @@
     };
     xserver.displayManager = {
       lightdm.enable = true;
-      # lightdm.greeters.pantheon.enable = true;
       lightdm.greeters.slick.enable = true;
-      # lightdm.greeters.slick.extraConfig = "only-on-monitor=1";
     };
 
     btrfs.autoScrub = {
@@ -234,9 +228,7 @@
     udev.packages = with pkgs; [
       qmk-udev-rules
       logitech-udev-rules
-      #openrgb
     ];
-    udev.extraRules = builtins.readFile ./71-liquidctl.rules;
   };  
 
   security.pam.sshAgentAuth.enable = true;

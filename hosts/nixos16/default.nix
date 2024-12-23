@@ -173,9 +173,7 @@
     udev.packages = with pkgs; [
       qmk-udev-rules
       wluma
-      #openrgb
     ];
-    #udev.extraRules = builtins.readFile ./rules.d/60-openrgb.rules;
   };
   
   security.pam.sshAgentAuth.enable = true;
@@ -185,9 +183,6 @@
     login.fprintAuth = true;
     login.kwallet.enable = true;
   };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enabling QMK option configuration
   hardware.keyboard.qmk.enable = true;

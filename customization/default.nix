@@ -5,7 +5,7 @@
     ./packages.nix
     ./common.nix
     ./virtualization.nix
-    ./sanoid.nix
+    # ./sanoid.nix
 #    ./syncoid.nix
   ];
 

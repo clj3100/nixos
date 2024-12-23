@@ -101,6 +101,7 @@
     ungoogled-chromium
     qpwgraph
     tio # Serial io device tool
+    nexusmods-app-unfree
   ];
 
 }
