@@ -102,6 +102,7 @@
     qpwgraph
     tio # Serial io device tool
     nexusmods-app-unfree
+    lutris
   ];
 
 }
