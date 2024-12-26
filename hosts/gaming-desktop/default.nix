@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../customization
       ./nixos-hardware
+      ./backups.nix
     ];
 
   boot = {
@@ -89,6 +90,7 @@
     logiops
     streamcontroller
     nvtopPackages.full
+    btrfs-assistant
   ];
 
   programs = {
