@@ -49,11 +49,11 @@
       options = [ "subvol=games" "compress=zstd:1" "noatime" ];
     };
   
-  fileSystems."/home/trey/games1" =
-    { device = "/dev/disk/by-uuid/3CF84D82F84D3B80";
-      fsType = "ntfs-3g"; 
-      options = [ "rw" "uid=1000" "gid=100" "nosuid" "nodev" "relatime"];
-    };
+ fileSystems."/home/trey/games1" =
+   { device = "/dev/disk/by-uuid/24710f49-cc3a-4dbc-b81b-610d389bf9b8";
+     fsType = "btrfs"; 
+     options = [ "compress=zstd:1" "noatime" ];
+   };
 
   # fileSystems."/home/trey/games2" =
   #   { device = "/dev/disk/by-uuid/084C36964C367F0E";

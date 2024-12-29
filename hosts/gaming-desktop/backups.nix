@@ -2,7 +2,7 @@
 {
     services.snapper = {
         snapshotInterval = "hourly";
-        cleanupInterval = "hourly";
+        cleanupInterval = "1h";
         configs.home = {
             SUBVOLUME = "/home";
             FSTYPE = "btrfs";
