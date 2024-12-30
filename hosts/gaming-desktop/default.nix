@@ -91,6 +91,7 @@
     streamcontroller
     nvtopPackages.full
     btrfs-assistant
+    vulkan-tools
   ];
 
   programs = {
@@ -114,7 +115,8 @@
     bluetooth.enable = true;
     graphics ={ 
       enable = true;
-      extraPackages = with pkgs; [mangohud];
+      enable32Bit = true;
+      extraPackages = with pkgs; [mangohud ];
       extraPackages32 = with pkgs; [mangohud];
     };
     nvidia = {
@@ -150,7 +152,7 @@
     };
     xserver = {
       enable = true;
-      videoDrivers = lib.mkDefault [ "nvidia" ];
+      videoDrivers = [ "nvidia" ];
     };
     desktopManager = {
       plasma6.enable = true;

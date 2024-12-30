@@ -2,7 +2,12 @@
 {
 
     home.packages = with pkgs; [
+    
+    # Browsers
     firefox-wayland
+    floorp
+    ungoogled-chromium
+
     vim
     zip
 
@@ -78,8 +83,6 @@
     qmk_hid
     qmk-udev-rules
     vlc
-    floorp
-    # prusa-slicer
     bottles
     dnsutils
     nmap
@@ -98,11 +101,17 @@
     easyeffects
     remmina
     protonup-qt
-    ungoogled-chromium
     qpwgraph
     tio # Serial io device tool
     nexusmods-app-unfree
     lutris
+
+    # Steamtinkerlaunch dependencies
+    yad
+    xdotool
+    xorg.xwininfo
+    wine
+    winetricks
   ];
 
 }
