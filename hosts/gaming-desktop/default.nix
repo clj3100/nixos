@@ -57,6 +57,7 @@
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     hostId = "1e58b0bc";
     firewall = {
+      allowedTCPPorts = [ 59999 ]; # Opening port for MoonDeckBuddy
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
       ];  
