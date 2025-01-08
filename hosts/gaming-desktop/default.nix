@@ -66,14 +66,8 @@
       ];  
     };
     interfaces.enp8s0 = {
-      # ipv4.addresses = [{
-      #   address = "192.168.1.25";
-      #   prefixLength = 24;
-      # }];
       wakeOnLan.enable = true;
     };
-    # defaultGateway = "192.168.1.1";
-    # nameservers = ["192.168.1.3"];
   };
 
   environment.systemPackages = with pkgs; [
@@ -122,7 +116,7 @@
     };
     nvidia = {
       modesetting.enable = true;
-      open = false;
+      open = true;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       powerManagement.enable = false;

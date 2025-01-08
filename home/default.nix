@@ -64,26 +64,26 @@
   nixupdate = "nix flake update --flake /home/trey/nixos-config";
   };
 
-  services.fusuma.enable = true;
-  services.fusuma.settings = {
-    threshold = {
-      swipe = 0.1;
-    };
-    interval = {
-      swipe = 0.7;
-    };
-    swipe = {
-      "3" = {
-        up = {
-          sendkey = "LEFTMETA+W";
-        };
-        down = {
-          sendkey = "LEFTMETA+W";
-        };
-      };
-    };
-  };
-  services.fusuma.extraPackages = with pkgs; [ coreutils-full ];
+  # services.fusuma.enable = true;
+  # services.fusuma.settings = {
+  #   threshold = {
+  #     swipe = 0.1;
+  #   };
+  #   interval = {
+  #     swipe = 0.7;
+  #   };
+  #   swipe = {
+  #     "3" = {
+  #       up = {
+  #         sendkey = "LEFTMETA+W";
+  #       };
+  #       down = {
+  #         sendkey = "LEFTMETA+W";
+  #       };
+  #     };
+  #   };
+  # };
+  # services.fusuma.extraPackages = with pkgs; [ coreutils-full ];
 
   home.stateVersion = "24.05";
 

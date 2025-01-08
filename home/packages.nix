@@ -97,6 +97,7 @@
     wlx-overlay-s
     vscode
     f3
+    f3d
     goverlay
     easyeffects
     remmina
