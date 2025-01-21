@@ -12,6 +12,7 @@
     win-virtio
     win-spice
     adwaita-icon-theme
+    virtiofsd
   ];
 
   # Manage the virtualisation services
