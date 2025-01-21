@@ -106,6 +106,8 @@
     tio # Serial io device tool
     nexusmods-app-unfree
     lutris
+    jdk
+    prismlauncher
 
     # Steamtinkerlaunch dependencies
     yad
