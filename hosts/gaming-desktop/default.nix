@@ -36,6 +36,12 @@
     };
   };
 
+  fonts.packages = [
+    pkgs.nerd-fonts._0xproto
+    pkgs.nerd-fonts.droid-sans-mono
+    pkgs.nerd-fonts.hack
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -90,6 +96,7 @@
   ];
 
   programs = {
+    partition-manager.enable = true;
     gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
     gamemode = {
       enable = true;
@@ -116,9 +123,9 @@
     };
     nvidia = {
       modesetting.enable = true;
-      open = true;
+      open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
     };
@@ -129,8 +136,6 @@
     keyboard.qmk.enable = true;
 
     i2c.enable = true;
-
-    pulseaudio.enable = false;
   };
 
   # Set your time zone.
@@ -168,6 +173,8 @@
     ratbagd.enable = true;
 
     fstrim.enable = true;
+    
+    pulseaudio.enable = false;
 
     pipewire = {
       enable = true;
