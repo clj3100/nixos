@@ -63,7 +63,8 @@
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     hostId = "1e58b0bc";
     firewall = {
-      allowedTCPPorts = [ 59999 24800 ]; # Opening port for MoonDeckBuddy and input-leap
+      allowedTCPPorts = [ 59999 24800 22000 ]; # Opening ports for MoonDeckBuddy, input-leap, and Syncthing
+      allowedUDPPorts = [ 22000 21027 ]; # Ports for Syncthing
       allowedTCPPortRanges = [ 
         { from = 1714; to = 1764; } # KDE Connect
       ];  
