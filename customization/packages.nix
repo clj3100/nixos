@@ -19,4 +19,14 @@ security = {
   };  
 };
 
+services = {
+    syncthing = {
+        enable = true;
+        group = "users";
+        user = "trey";
+        dataDir = "/home/trey/Documents";    # Default folder for new synced folders
+        configDir = "/home/trey/.config/syncthing";   # Folder for Syncthing's settings and keys
+    };
+};
+
 }
