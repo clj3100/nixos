@@ -108,6 +108,7 @@
     lutris
     jdk
     prismlauncher
+    input-leap
 
     # Steamtinkerlaunch dependencies
     yad
