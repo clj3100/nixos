@@ -136,6 +136,9 @@
     # Enabling QMK option configuration
     keyboard.qmk.enable = true;
 
+    # Driver for xbox wireless controller
+    xpadneo.enable = true;
+
     i2c.enable = true;
   };
 
