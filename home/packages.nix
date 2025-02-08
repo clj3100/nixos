@@ -109,6 +109,7 @@
     jdk
     prismlauncher
     input-leap
+    syncthingtray
 
     # Steamtinkerlaunch dependencies
     yad
