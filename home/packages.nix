@@ -74,9 +74,6 @@
     poweralertd
     unzip
     wget
-    krunner-pass
-    krunner-ssh
-    krunner-symbols
     discord
     via
     qmk
@@ -89,11 +86,10 @@
     ipcalc
     tpm2-tools
     tpm2-pkcs11
-    ksshaskpass
     openrgb
     cheese
     appimage-run
-    spectacle
+    kdePackages.spectacle
     wlx-overlay-s
     vscode
     f3

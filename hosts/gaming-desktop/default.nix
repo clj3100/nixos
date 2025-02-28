@@ -54,7 +54,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 30d";
     };
   };
 
@@ -81,7 +81,7 @@
     git
     acpi
     sbctl
-    kwallet-pam
+    kdePackages.kwallet-pam
     adwaita-icon-theme
     tpm2-tss
     ddcutil
