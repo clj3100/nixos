@@ -110,6 +110,8 @@
     prismlauncher
     input-leap
     syncthingtray
+    kdePackages.kdepim-addons
+    kdePackages.korganizer
 
     # Steamtinkerlaunch dependencies
     yad
