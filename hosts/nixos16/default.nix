@@ -147,7 +147,7 @@
     };
     xserver.displayManager = {
       lightdm.enable = true;
-      lightdm.greeters.pantheon.enable = true;
+      lightdm.greeters.slick.enable = true;
     };
 
     zfs.autoScrub = {
