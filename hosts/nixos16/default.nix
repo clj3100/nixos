@@ -48,7 +48,12 @@
      zfs.forceImportRoot = false;
   };
 
-  nixpkgs.config.allowBroken = true;
+  fonts.packages = [
+    pkgs.nerd-fonts._0xproto
+    pkgs.nerd-fonts.droid-sans-mono
+    pkgs.nerd-fonts.hack
+  ];
+
   nixpkgs.config.allowUnfree = true;
 
   nix = {
@@ -61,13 +66,9 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 30d";
     };
   };
-
-  swapDevices = [{
-    device = "/dev/disk/by-uuid/3973b6f2-a1b3-49fa-b5c2-682cda4f172e";
-  }];
 
   time.timeZone = "America/New_York";
 
@@ -105,7 +106,7 @@
     fw-ectool
     kdePackages.frameworkintegration
     wluma
-    kwallet-pam
+    kdePackages.kwallet-pam
     adwaita-icon-theme
     iio-sensor-proxy
     tpm2-tss
@@ -124,23 +125,27 @@
  
   systemd.user.units.wluma.wantedBy = [ "default.target"];
 
-  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
-
-  programs.gamemode = {
-    enable = true;
-    settings = {
-      general = {
-        softrealtime = "auto";
-        renice = 10;
-      };
-      custom = {
-        start = "notify-send -a 'Gamemode' 'Optimizations activated'";
-        end = "notify-send -a 'Gamemode' 'Optimizations deactivated'";
+  programs = {
+    partition-manager.enable = true;
+    gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          softrealtime = "auto";
+          renice = 10;
+        };
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        };
       };
     };
   };
 
   services = {
+    flatpak.enable = true;
+    fwupd.enable = true;
     xserver.enable = true;
     desktopManager = {
       plasma6.enable = true;
@@ -163,6 +168,19 @@
 
     fprintd.enable = true;
  
+    pulseaudio.enable = false;
+
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
+
     upower = {
       enable = true;
       percentageLow = 20;
@@ -184,20 +202,20 @@
     login.kwallet.enable = true;
   };
 
-  # Enabling QMK option configuration
-  hardware.keyboard.qmk.enable = true;
+  hardware = {
+    # Enabling QMK option configuration
+    keyboard.qmk.enable = true;
 
-  hardware.i2c.enable = true;
+    i2c.enable = true;
 
-  # Enable sound.
-  hardware.pulseaudio.enable = false;
-  # OR
-   services.pipewire = {
-     enable = true;
-     alsa.enable = true;
-     alsa.support32Bit = true;
-     pulse.enable = true;
-   };
+    bluetooth.enable = true;
+    graphics ={ 
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [mangohud ];
+      extraPackages32 = with pkgs; [mangohud];
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
