@@ -3,7 +3,7 @@
 {
   imports = [
     ./packages.nix
-    ./services.nix
+    #./services.nix
   ]; 
 
   home.username = "trey";
