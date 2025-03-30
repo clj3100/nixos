@@ -61,7 +61,7 @@
   homedit = "vi /home/trey/nixos-config/home";
   g = "git";
   nixrebuild = "sudo nixos-rebuild --flake /home/trey/nixos-config";
-  nixupdate = "nix flake update --flake /home/trey/nixos-config";
+  nixupdate = "nix flake update --flake /home/trey/nixos-config --commit-lock-file";
   };
 
   # services.fusuma.enable = true;
