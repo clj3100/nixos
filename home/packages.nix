@@ -108,6 +108,7 @@
     syncthingtray
     kdePackages.kdepim-addons
     kdePackages.korganizer
+    lmstudio
 
     # Steamtinkerlaunch dependencies
     yad
