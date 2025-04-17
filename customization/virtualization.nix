@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   # Add user to libvirtd group
-  users.users.trey.extraGroups = [ "libvirtd" ];
+  users.users.trey.extraGroups = [ "libvirtd" "kvm" ];
 
   # Install necessary packages
   environment.systemPackages = with pkgs; [
